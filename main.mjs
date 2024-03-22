@@ -83,6 +83,7 @@ async function obtenerPokemon(nombre) {
     parseArray.push(propiedadesPokemon);                                            //"Sube" los datos al array
     let arrayJSON = JSON.stringify(parseArray);                             //Tranforma los objetos a formato "string" 
     localStorage.setItem("hola", arrayJSON)
+
 }
 
 async function obtenerListado() {
@@ -119,15 +120,69 @@ const filtroPokemon = document.getElementById('filtro');
 filtroPokemon.addEventListener("click", (e)=>{
     e.preventDefault();
 
-    let arrayPokemon = JSON.parse(localStorage.getItem("hola")) || [];
-
     const busqueda = document.getElementById('valorFiltro').value
-    let findPokemon = arrayPokemon.find((pokemon) => pokemon.name == busqueda);
-    console.log(findPokemon);  
-    crearBusqueda(findPokemon)      
+    
+/*hasta aqui bien
+    let arrayPokemon = JSON.parse(localStorage.getItem("hola")) || [];
+    for (let index = 0; index < arrayPokemon.length; index++) {
+        let topos = arrayPokemon[index].types.length;
+        
+        for (let index1 = 0; index1 < topos; index1++) {
+            let topitos = arrayPokemon[index].types[index1].type;
+            let pruebafinal2 = JSON.parse(localStorage.getItem("apokozy")) || [];        
+        pruebafinal2.push(topitos);                                            
+            let pruebaJSON2 = JSON.stringify(pruebafinal2);                      
+            localStorage.setItem("apokozy", pruebaJSON2)}
+        
+        let pruebafinal = JSON.parse(localStorage.getItem("apoko")) || [];        
+        pruebafinal.push(topos);                                            
+        let pruebaJSON = JSON.stringify(pruebafinal);                      
+        localStorage.setItem("apoko", pruebaJSON)
+        };*/
+        
+
+        if(busqueda === "fire" || busqueda === "water"){
+            let arrayTipos = JSON.parse(localStorage.getItem("apokozy")) || [];
+            let findType = arrayTipos.find((pokemon) => pokemon.types == busqueda);
+            console.log(findType);
+            
+        } else {
+            let arrayPokemon = JSON.parse(localStorage.getItem("hola")) || [];
+            let findPokemon = arrayPokemon.find((pokemon) => pokemon.name == busqueda);
+            let div = document.getElementById('render');
+            while (div.firstChild) {
+            div.removeChild(div.firstChild);
+            }
+            crearBusqueda(findPokemon); 
+    }
+    
+    
+    //crearBusqueda(findType);     
 })
     
-
+const limpiarP = document.getElementById('limpiar');
+limpiarP.addEventListener("click", (e)=>{
+    e.preventDefault();
+    localStorage.clear();
+})
       
+setTimeout(function(){
+    let arrayPokemon = JSON.parse(localStorage.getItem("hola")) || [];
+    for (let index = 0; index < arrayPokemon.length; index++) {
+        let topos = arrayPokemon[index].types.length;
+        
+        for (let index1 = 0; index1 < topos; index1++) {
+            let topitos = arrayPokemon[index].types[index1].type;
+            let pruebafinal2 = JSON.parse(localStorage.getItem("apokozy")) || [];        
+        pruebafinal2.push(topitos);                                            
+            let pruebaJSON2 = JSON.stringify(pruebafinal2);                      
+            localStorage.setItem("apokozy", pruebaJSON2)}
+        
+        let pruebafinal = JSON.parse(localStorage.getItem("apoko")) || [];        
+        pruebafinal.push(topos);                                            
+        let pruebaJSON = JSON.stringify(pruebafinal);                      
+        localStorage.setItem("apoko", pruebaJSON)
+        };
+}, 2000);
 
 obtenerListado()

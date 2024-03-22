@@ -1,8 +1,31 @@
+body{
+    background: linear-gradient(rgb(252, 183, 93), rgb(205, 27, 21));
+}
+
+header{
+    width: 100%;
+}
+
+#cuadroPokedex{
+    width: 80%;
+    margin: 0 auto;
+}
+
 #buscador{
-    width: 50%;
-    height: 200px;
-    background-color: black;
     text-align: center;
+    margin: 3em 0;
+}
+
+form input{
+    width: 20%;
+    height: 25px;
+}
+
+form button{
+    width: 6em;
+    height: 2em;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 #render{
@@ -20,6 +43,7 @@
     box-sizing: border-box;
     border: 2px solid #000000;
     border-radius: 10px;
+    background-color: rgb(112, 223, 248);
 }
 
 .carta h3{
@@ -39,7 +63,10 @@
 
 .datos button{
     margin: 10%;;
+    width: 6em;
+    height: 2em;
     font-size: 18px;
+    font-weight: bold;
 }
 
 /* Configuración de la ventana modal */
@@ -108,7 +135,30 @@
 
 
 @media screen and (max-width:480px){
+    form input{
+        width: 40%;
+        height: 25px;
+    }
+
     .carta{
         width: auto;
+    }
+
+    .carta h3{
+        font-size: 20px;
+        font-weight: bold;
+    }
+    
+    .datos li{
+        padding: 1%;
+        font-size: 16px;
+    }
+
+    .datos button{
+        margin: 10%;;
+        width: 4em;
+        height: 2em;
+        font-size: 18px;
+        font-weight: bold;
     }
 }
